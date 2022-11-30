@@ -32,7 +32,7 @@ function alertPrototype(keywords) {
 
 // Returns cookie that should be passed to googleAlerts 
 async function readAlertCookies() {
-	if (StoredCookie != "")
+	if (StoredCookie)
 		return StoredCookie;
 	console.warn(`Reading Chrome cookies...`);
 	const cookies = await chromeCookies.getCookiesPromised("https://myaccount.google.com");
@@ -49,7 +49,11 @@ async function readAlertCookies() {
 		});
 	}
 	//console.log(alertLibCookieObject);
-	return btoa(JSON.stringify(alertLibCookieObject));
+	let encodedCookie = btoa(JSON.stringify(alertLibCookieObject));
+	console.log(`Add this to your .env file to avoid reading Chrome's cookie jar
+GOOGLE_LOGIN_COOKIE="${encodedCookie}"
+`);
+	return encodedCookie;
 }
 
 // Promise wrapper for googleAlerts
@@ -158,8 +162,8 @@ function usage() {
 }
 // Main 
 // When ready for arguments
-let args = process.argv.slice(2);
-console.log(process.argv);
+// let args = process.argv.slice(2);
+// console.log(process.argv);
 
 readAlertCookies().then( cookies => {
 	// console.log("cookies read", cookies);
