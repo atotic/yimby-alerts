@@ -1,0 +1,16 @@
+{
+  "name": "vanilla",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "debug": "node --inspect-brk alerts.cjs",
+    "sync": "node alerts.cjs"
+  },
+  "dependencies": {
+    "chrome-cookies-secure": "^2.0.0",
+    "dotenv": "^16.0.3",
+    "google-alerts-api": "^0.6.1",
+    "rss-parser": "^3.12.0"
+  }
+}
