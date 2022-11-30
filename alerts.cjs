@@ -6,6 +6,8 @@ const googleAlerts = require('google-alerts-api');
 const chromeCookies = require('chrome-cookies-secure');
 // https://github.com/rbren/rss-parser
 const rssParser = require('rss-parser');
+// https://github.com/airtable/airtable.js
+const airtable = require('airtable');
 
 require('dotenv').config()
 
@@ -176,7 +178,7 @@ readAlertCookies().then( cookies => {
 .then( _ => AlertsAPI.sync() )
 .then( _ => readRss() ) 
 .then( feeds => processFeeds(feeds) ) 
-.catch(reason => {
-		console.error("Could not get cookies", reason);
+.catch(err => {
+		console.error("Unexpected error:", err);
 });
 
